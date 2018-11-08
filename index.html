@@ -1,0 +1,524 @@
+  <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Triplaner - Itinerary Creator</title>
+            <meta name="description" content="Triplaner - Itinerary Creator">
+            <meta name="keywords" content="">
+            <meta name="author" content="TRIPLANER">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="icon" href="images/iconlil.png">
+
+            <!--styles-->
+            <link rel="stylesheet" href="css/bootstrap.css"/>
+            <!--plugin css-->
+            <link rel="stylesheet" href="css/swiper.css"/>
+            <link rel="stylesheet" href="css/slick.css"/>
+            <link rel="stylesheet" href="css/gridrotator-custom.css"/>
+
+
+            <!--custom css-->
+            <link rel="stylesheet" href="css/style.css"/>
+            <link rel="stylesheet" href="css/responsive.css"/>
+
+            <!--script-->
+            <script src="js/jquery-2.0.0.min.js" type="text/javascript"></script>
+            <script src="js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="js/swiper.min.js" type="text/javascript"></script>
+            <script src="js/slick.min.js" type="text/javascript"></script>
+            <script src="js/modernizr_custom.js" type="text/javascript"></script>
+            <script src="js/jquery.gridrotator.js" type="text/javascript"></script>
+            <script src="js/custom.js" type="text/javascript"></script>
+        </head>
+        <body>
+
+            <div id="page">
+                <!-----------Header Section----------------->
+                <header class="tv-header-area">
+                    <div class="tv-top-header">
+                        <div class="container">
+                            <div class="tv-top-header-inner flex-box-view-one">
+                                <div class="tv-search-block">
+                                    <ul>
+                                        <li class="list-inline"><a onclick="openNav()" class="tv-search-btn"><i class="ti-search"></i></a></li>								
+                                    </ul>
+                                </div>
+                                <div class="col--12 text-right">
+                                    <a href="login.html" class="btn btn-lg btn-light">Login</a>
+                                    <a href="register.html" class="btn btn-lg btn-dark">Register</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tv-middle-header">
+                        <div class="container">
+                            <div class="tv-logo text-center">
+                                <a href="index.html"><img src="images/logolil.png" alt="logo"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-----------Search Section----------------->
+                    <div class="tv-search-overlay" id="search_nav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                        <div class="search-overlay-content">
+                            <div class="container tv-search-wrapper">
+                                <form class="tv-search-form">
+                                    <input value="" name="s" class="sh-header-search-side-input" placeholder="Enter a keyword to search..." type="text">
+                                    <button type="submit" class="tv-search-button"><i class="ti-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-----------End----------------->
+                </header>
+                <!-----------End----------------->
+
+                <!-----------Slider Section----------------->
+                <section class="tv-slider-section">
+                    <div class="swiper-container tv-featured-blog-slider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="tv-featured-post-image">
+                                    <img src="images/mapa.png" alt="post-image">
+                                    <div class="tv-overlay-light-dark"></div>
+                                </div>
+                                <div class="tv-featured-content-wrapper">
+                                    <div class="post-categories">
+                                        <a href="mix-style.html">Rome</a>,<a href="mix-style.html" >Free</a>
+                                    </div>
+                                    <div class="tv-featured-content-title">
+                                        <h2 class="tv-white-text"><a href="single-blog.html">Awesome day in Rome!</a></h2>
+                                    </div>
+                                    <div class="tv-featured-posted-date">
+                                        <span class="posted-date">11 May, 2018</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="tv-featured-post-image">
+                                    <img src="images/mapa.png" alt="post-image">
+                                    <div class="tv-overlay-light-dark"></div>
+                                </div>
+                                <div class="tv-featured-content-wrapper">
+                                    <div class="post-categories">
+                                        <a href="mix-style.html">Dublin</a>,<a href="mix-style.html">Party</a>
+                                    </div>
+                                    <div class="tv-featured-content-title">
+                                        <h2 class="tv-white-text"><a href="single-blog.html">Getting drunk with the Irish!</a></h2>
+                                    </div>
+                                    <div class="tv-featured-posted-date">
+                                        <span class="posted-date">29 August, 2018</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="tv-featured-post-image">
+                                    <img src="images/mapa.png" alt="post-image">
+                                    <div class="tv-overlay-light-dark"></div>
+                                </div>
+                                <div class="tv-featured-content-wrapper">
+                                    <div class="post-categories">
+                                        <a href="mix-style.html">Cape Town</a>,<a href="mix-style.html">Nature</a>
+                                    </div>
+                                    <div class="tv-featured-content-title">
+                                        <h2 class="tv-white-text"><a href="single-blog.html">One with Cape Town nature</a></h2>
+                                    </div>
+                                    <div class="tv-featured-posted-date">
+                                        <span class="posted-date">17 September, 2017</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </section>
+                <!-----------End----------------->
+
+                <!-----------Author Blog----------------->
+                <section class="tv-author-block tv-section-padding">
+                    <div class="container">
+                        <div class="tv-heading-section">
+                            <div class="tv-heading-title">
+                                <h2>Editors Pick</h2>
+                            </div>
+                            <div class="tv-seperator-content">
+                                <div class="tv-seperator-line"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <article class="author-blog">
+                                    <div class="post-thumnail">
+                                        <div class="post-thumnail-box">
+                                            <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                        </div>
+                                        <a class="tv-post-overlay" href="single-blog.html">
+                                            <i class="ti-exchange-vertical"></i>
+                                        </a>
+                                    </div>
+                                    <div class="post-extra-details">
+                                        <div class="post-categories"><a href="mix-style.html">Lisbon</a>, <a href="mix-style.html">Culture</a></div>
+                                        <div class="post-title">
+                                            <h4><a href="single-blog.html">Chilling with Fado, Camões and Fernando Pessoa.</a></h4>
+                                        </div>
+                                        <div class="post-meta">
+                                            <span class="posts-date">
+                                                <i class="ti-calendar"></i> 28 Mar 2018</span>
+                                            <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>5</a></span>
+                                            <span class="post-author"><a href="tag.html">Ryan Gosling</a></span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <article class="author-blog">
+                                    <div class="post-thumnail">
+                                        <div class="post-thumnail-box">
+                                            <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                        </div>
+                                        <a class="tv-post-overlay" href="single-blog.html">
+                                            <i class="ti-exchange-vertical"></i>
+                                        </a>
+                                    </div>
+                                    <div class="post-extra-details">
+                                        <div class="post-categories"><a href="mix-style.html">Paris</a>, <a href="mix-style.html">Culture</a></div>
+                                        <div class="post-title">
+                                            <h4><a href="single-blog.html">Glamorous ride through all the expensive sites of Paris! </a></h4>
+                                        </div>
+                                        <div class="post-meta">
+                                            <span class="posts-date">
+                                                <i class="ti-calendar"></i> 4 June 2018</span>
+                                            <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>24</a></span>
+                                            <span class="post-author"><a href="tag.html">Meryl Streep</a></span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <article class="author-blog">
+                                    <div class="post-thumnail">
+                                        <div class="post-thumnail-box">
+                                            <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                        </div>
+                                        <a class="tv-post-overlay" href="single-blog.html">
+                                            <i class="ti-exchange-vertical"></i>
+                                        </a>
+                                    </div>
+                                    <div class="post-extra-details">
+                                        <div class="post-categories"><a href="mix-style.html">Sidney</a>, <a href="mix-style.html">Party</a></div>
+                                        <div class="post-title">
+                                            <h4><a href="single-blog.html">Cracking a cold one with the Sidney boyz!</a></h4>
+                                        </div>
+                                        <div class="post-meta">
+                                            <span class="posts-date">
+                                                <i class="ti-calendar"></i> 15 June 2018</span>
+                                            <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>0</a></span>
+                                            <span class="post-author"><a href="tag.html">Sean Connery</a></span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-----------End----------------->
+
+                <!-----------Middle content----------------->
+                <section class="tv-content-container tv-section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <!-----------Latest Blog----------------->
+                            <div class="col-xl-8 col-lg-8 col-md-12 order-xl-1 order-lg-1 order-2">
+                                <div class="tv-heading-section tv-offspace-bottom-40">
+                                    <div class="tv-heading-title">
+                                        <h2>Latest plans</h2>
+                                    </div>
+                                    <div class="tv-seperator-content">
+                                        <div class="tv-seperator-line"></div>
+                                    </div>
+                                </div>
+                                <article class="tv-post-item">
+                                    <div class="tv-post-wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="post-thumnail">
+                                                    <div class="post-thumnail-box">
+                                                        <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                                    </div>
+                                                    <a class="tv-post-overlay" href="single-blog.html">
+                                                        <i class="ti-exchange-vertical"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 tv-post-section-right">
+                                                <div class="post-extra-details">
+                                                    <div class="post-categories"><a href="mix-style.html">Washington</a>, <a href="mix-style.html">Culture</a></div>
+                                                    <div class="post-title">
+                                                        <h2><a href="single-blog.html">Checking politicians in their habitat</a></h2>
+                                                    </div>
+                                                    <div class="post-content">
+                                                        <p>Capitol - Congress - Lincoln - Some Memorial - Jupyter - Stuff</p>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <span class="posts-date">
+                                                            <i class="ti-calendar"></i> 21 Nov 2018</span>
+                                                        <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>0</a></span>
+                                                        <span class="post-author"><a href="tag.html">Matt Damon</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="tv-post-item">
+                                    <div class="tv-post-wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="post-thumnail">
+                                                    <div class="post-thumnail-box">
+                                                        <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                                    </div>
+                                                    <a class="tv-post-overlay" href="single-blog.html">
+                                                        <i class="ti-exchange-vertical"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 tv-post-section-right">
+                                                <div class="post-extra-details">
+                                                    <div class="post-categories"><a href="mix-style.html">Moscow</a>, <a href="mix-style.html">Party</a></div>
+                                                    <div class="post-title">
+                                                        <h2><a href="single-blog.html">Cookin' with president Putin</a></h2>
+                                                    </div>
+                                                    <div class="post-content">
+                                                        <p>Site1 - Site2 - Site3 - Site4 - Site6 - ISkippedSite5 - Site7</p>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <span class="posts-date">
+                                                            <i class="ti-calendar"></i> 21 Nov 2018</span>
+                                                        <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>2</a></span>
+                                                        <span class="post-author"><a href="tag.html">Brad Pitt</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="tv-post-item">
+                                    <div class="tv-post-wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="post-thumnail">
+                                                    <div class="post-thumnail-box">
+                                                        <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                                    </div>
+                                                    <a class="tv-post-overlay" href="single-blog.html">
+                                                        <i class="ti-exchange-vertical"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 tv-post-section-right">
+                                                <div class="post-extra-details">
+                                                    <div class="post-categories"><a href="mix-style.html">Seoul</a>, <a href="mix-style.html">Party</a></div>
+                                                    <div class="post-title">
+                                                        <h2><a href="single-blog.html">K-Poppin in Korea</a></h2>
+                                                    </div>
+                                                    <div class="post-content">
+                                                        <p>Site1 - Site2 - Site3 - Site4 - Site6 - Site7 - Site8 - Site9 - Site10 - Site11</p>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <span class="posts-date">
+                                                            <i class="ti-calendar"></i> 20 Nov 2018</span>
+                                                        <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>0</a></span>
+                                                        <span class="post-author"><a href="tag.html">Clara Foy</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <article class="tv-post-item">
+                                    <div class="tv-post-wrapper">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="post-thumnail">
+                                                    <div class="post-thumnail-box">
+                                                        <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                                    </div>
+                                                    <a class="tv-post-overlay" href="single-blog.html">
+                                                        <i class="ti-exchange-vertical"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 tv-post-section-right">
+                                                <div class="post-extra-details">
+                                                    <div class="post-categories"><a href="mix-style.html">Los Angeles</a>, <a href="mix-style.html">Party</a></div>
+                                                    <div class="post-title">
+                                                        <h2><a href="single-blog.html">All-Star parade with the best!</a></h2>
+                                                    </div>
+                                                    <div class="post-content">
+                                                        <p>Lorem - ipsum - dolor sit -  amet - consectetur - adipiscing elit - Nam laoreet - nunc - et accumsan - cursus - neque eros</p>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <span class="posts-date">
+                                                            <i class="ti-calendar"></i> 19 Nov 2018</span>
+                                                        <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>1</a></span>
+                                                        <span class="post-author"><a href="tag.html">Angelina Jolie</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-----------End----------------->
+                            
+                            <!-----------Right Sidebar----------------->
+                            <div class="col-xl-4 col-lg-4 col-md-12 order-1 tv-right-sidebar" id="sidebar">
+                                <div class="tv-sidebar-container">
+                                    <div class="tv-widget tv-widget-about">
+                                        <div class="tv-heading-section">
+                                            <div class="tv-heading-title">
+                                                <h3>Featured Author</h3>
+                                            </div>
+                                            <div class="tv-seperator-content">
+                                                <div class="tv-seperator-line"></div>
+                                            </div>
+                                        </div>
+                                        <div class="tv-about-me-profile text-center">
+                                            <img src="images/Shia.jpg" alt="" class="">
+                                        </div>
+                                        <div class="tv-about-me-content text-center">
+                                            <div class="tv-author-name">
+                                                <h3>Shia LaBeouf</h3>
+                                                <span class="tv-author-profession">Party, Nature</span>
+                                            </div>
+                                            <div class="tv-author-bio">
+                                                <p>I like to party in all the cities of the universe!!! I also enjoy Transfomers! Autobots, roll out! </p>
+                                            </div>
+                                            <div class="tv-author-social">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tv-widget tv-widget-category">
+                                        <div class="tv-heading-section">
+                                            <div class="tv-heading-title">
+                                                <h3>Category</h3>
+                                            </div>
+                                            <div class="tv-seperator-content">
+                                                <div class="tv-seperator-line"></div>
+                                            </div>
+                                        </div>
+                                        <div class="tv-widget-category-box">
+                                            <ul class="tv-widget-category-list">
+                                                <li><a href="mix-style.html">Nature <span class="count">145</span></a></li>
+                                                <li><a href="mix-style.html">Culture <span class="count">189</span></a></li>
+                                                <li><a href="mix-style.html">Party <span class="count">325</span></a></li>
+                                                <li><a href="mix-style.html">Free <span class="count">289</span></a></li>
+                                                <li><a href="mix-style.html">Uncategorised <span class="count">745</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                            <!-----------End----------------->
+                        </div>
+                    </div>
+                </section>
+                <!-----------End----------------->
+
+                <!-----------Insta Section----------------->
+                <section class="instagram-section tv-section-padding">
+                    <div id="tv-grid" class="tv-grid tv-grid-size-2 tv-set-insta-icon">
+                        <ul>
+                            <li><a href="#"><img src="images/insta/insta1.jpg"/>
+                                <span class="tv-insta-overlay">
+                                   <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                                    </a>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta2.jpg"/></a> 
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta3.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta4.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta5.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta6.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta7.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta8.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta9.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta10.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                            <li><a href="#"><img src="images/insta/insta11.jpg"/></a>
+                                <span class="tv-insta-overlay">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <!-----------End----------------->
+
+                <!-----------Footer----------------->
+                <footer class="tv-footer" style="background-image: url('images/footer-bg.jpg')">
+                    <div class="tv-footer-copyrights">
+                        <div class="container">
+                            <div class="flex-box-view-one">
+                                <div class="icon">
+                                    <a href="index.html"><img src="images/iconfoot.png" alt="logo"></a>
+                                </div>
+                                <div class="copyright">
+                                    <p> &copy; All right reserved. Designed by <a href="http://ctp.di.fct.unl.pt/miei/ipm/" target="_blank">IPM.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-----------End----------------->
+            </div>
+            <div id="back-to-top" class="back-to-top"> <i class="fa fa-angle-up"></i></div>
+        </body>
+    </html>
