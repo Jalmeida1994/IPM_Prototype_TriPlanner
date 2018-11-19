@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Triplaner - Itinerary Creator</title>
+        <meta name="description" content="Triplaner - Itinerary Creator">
+        <meta name="keywords" content="">
+        <meta name="author" content="TRIPLANER">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="images/iconlil.png">
+
+        <!--styles-->
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <!--plugin css-->
+        <link rel="stylesheet" href="css/swiper.css"/>
+        <link rel="stylesheet" href="css/slick.css"/>
+        <link rel="stylesheet" href="css/gridrotator-custom.css"/>
+
+        <!--custom css-->
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/responsive.css"/>
+
+        <!--script-->
+        <script src="js/jquery-2.0.0.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/swiper.min.js" type="text/javascript"></script>
+        <script src="js/slick.min.js" type="text/javascript"></script>
+        <script src="js/modernizr_custom.js" type="text/javascript"></script>
+        <script src="js/jquery.gridrotator.js" type="text/javascript"></script>
+        <script src="js/custom.js" type="text/javascript"></script>
+    </head>
+    <body>
+
+        <div id="page">
+            <!-----------Header Section----------------->
+            <header class="tv-header-area">
+                <div class="tv-top-header">
+                    <div class="container">
+                        <div class="tv-top-header-inner flex-box-view-one">
+                            <div class="tv-search-block">
+                                <ul>
+                                    <li class="list-inline"><a onclick="openNav()" class="tv-search-btn"><i class="ti-search"></i></a></li>								
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tv-middle-header">
+                    <div class="container">
+                        <div class="tv-logo text-center">
+                            <a href="index.html"><img src="images/logolil.png" alt="logo"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-----------Navigation----------------->
+                <div class="tv-main-menu tv-sticky-header bg-light">
+                    <div class="navbar-default container">
+                        <nav class="navbar navbar-expand-sm navbar-light">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+                                <span class="ti-menu"></span>
+                            </button>
+                            <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                                <ul class="navbar-nav tv-reset-navbar">
+                                    <li class="nav-item active dropdown">
+                                        <a class="tv-dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" >
+                                            Account
+
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                             <li><a href="Plans.html">My Plans</a></li>
+                                            <li><a href="SavedPlans.html">Saved Plans</a></li>
+                                            <li><a href="#">Settings</a></li>
+                                            <li><a href="index.html">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="tv-dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" >
+                                            Trending
+                                            <span class="tv-new-item">New</span>
+                                        </a>
+                                         <ul class="dropdown-menu">
+                                         <li><a href="Today.html">Today</a></li>
+                                            <li><a href="Week.html">This Week</a></li>
+                                            <li><a href="Month.html">This Month</a></li>
+                                            <li><a href="Year.html">This Year</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="tv-dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" >
+                                            Popular
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="mix-style2.html">Nature</a></li>
+                                            <li><a href="mix-style.html">Culture</a></li>
+                                            <li><a href="mix-style3.html">Party</a></li>
+                                            <li><a href="mix-style4.html">Free</a></li>
+                                            <li><a href="mix-style5.html">Uncategorized</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Create</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-----------End----------------->
+
+                <!-----------Search Section----------------->
+                <div class="tv-search-overlay" id="search_nav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                    <div class="search-overlay-content">
+                        <div class="container tv-search-wrapper">
+                            <form class="tv-search-form">
+                                <input value="" name="s" class="sh-header-search-side-input" placeholder="Enter a keyword to search..." type="text">
+                                <button type="submit" class="tv-search-button"><i class="ti-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-----------End----------------->
+            </header>
+   
+            <!-----------End----------------->
+
+            <!-----------Page Heading----------------->
+            <section class="tv-page-title-section tv-bg-theme-col tv-padd-tb-40">
+                <div class="container">
+                    <div class="flex-box-view-one">
+                        <div class="tv-page-title"><h1>Saved Plans</h1></div>
+                        <div class="tv-breadcrumb-box">
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active">1</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-----------End----------------->
+
+            <!-----------Middle content----------------->
+            <section class="tv-content-container tv-section-padding">
+                <div class="container">
+                    <!-----------Latest Blog----------------->
+                    <div class="tv-blog-style-mix">
+                        <article class="tv-post-item">
+                            <div class="tv-post-wrapper">
+                                <div class="row">
+                                    <div class="col-md-6 tv-post-image-left">
+                                        <div class="post-thumnail">
+                                            <div class="post-thumnail-box">
+                                                <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                            </div>
+                                            <a class="tv-post-overlay" href="single-blog.html">
+                                                <i class="ti-exchange-vertical"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 tv-post-section-right">
+                                        <div class="post-extra-details">
+                                            <div class="post-categories"><a href="mix-style.html">Seul</a>, <a href="mix-style3.html">Party</a></div>
+                                            <div class="post-title">
+                                                <h2><a href="single-blog.html">Korean Night</a></h2>
+                                            </div>
+                                            <div class="post-content">
+                                                <p>Myeongdong - Gyeongbokgung - Insadong - Lotte World - Namsan</p>
+                                            </div>
+                                            <div class="post-meta">
+                                                <span class="posts-date">
+                                                    <i class="ti-calendar"></i> 28 June 2018</span>
+                                                <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>3</a></span>
+                                                <span class="post-author"><a href="">Meryl Streep</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="tv-post-item">
+                            <div class="tv-post-wrapper">
+                                <div class="row">
+                                    <div class="col-md-6 tv-post-image-left">
+                                        <div class="post-thumnail">
+                                            <div class="post-thumnail-box">
+                                                <div class="post-image" style="background-image: url('images/mapapost.png')"></div>
+                                            </div>
+                                            <a class="tv-post-overlay" href="single-blog.html">
+                                                <i class="ti-exchange-vertical"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                   <div class="col-md-6 tv-post-section-right">
+                                        <div class="post-extra-details">
+                                            <div class="post-categories"><a href="Dresden.html">Dresden</a>, <a href="mix-style.html">Culure</a></div>
+                                            <div class="post-title">
+                                                <h2><a href="single-blog.html">Best plans for an erasmus in Dresden</a></h2>
+                                            </div>
+                                            <div class="post-content">
+                                                <p>Zwinger - Frauenkirche - Semper Operah - Dresden Castle - Brühl's Terrace - Moritzburg - Fürstenzug</p>
+                                            </div>
+                                            <div class="post-meta">
+                                                <span class="posts-date">
+                                                    <i class="ti-calendar"></i> 24 Feb 2018</span>
+                                                <span class="comment-count"><a href="single-blog.html#comm"><i class="ti-comments-smiley"></i>4</a></span>
+                                                <span class="post-author"><a href="">Tom Hanks</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        
+                    </div>
+                    <!-----------End----------------->
+                </div>
+            </section>
+            <!-----------End----------------->
+
+            <!-----------Instagram Section----------------->
+            <section class="instagram-section tv-section-padding">
+                <div id="tv-grid" class="tv-grid tv-grid-size-2 tv-set-insta-icon">
+                    <ul>
+                        <li><a href="#"><img src="images/insta/insta1.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta2.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta3.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta4.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta5.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta6.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta7.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta8.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta9.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta10.jpg"/></a></li>
+                        <li><a href="#"><img src="images/insta/insta11.jpg"/></a></li>
+                    </ul>
+                </div>
+            </section>
+            <!-----------End----------------->
+
+            <!-----------Footer----------------->
+            <footer class="tv-footer" style="background-image: url('images/footer-bg.jpg')">
+            <div class="tv-footer-copyrights">
+                        <div class="container">
+                            <div class="flex-box-view-one">
+                                <div class="icon">
+                                    <a href="index.html"><img src="images/iconfoot.png" alt="logo"></a>
+                                </div>
+                                <div class="copyright">
+                                    <p> &copy; All right reserved. Designed by <a href="http://ctp.di.fct.unl.pt/miei/ipm/" target="_blank">IPM.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </footer>
+            <!-----------End----------------->
+        </div>
+        <div id="back-to-top" class="back-to-top"> <i class="fa fa-angle-up"></i></div>
+    </body>
+</html>
