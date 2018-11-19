@@ -2,7 +2,7 @@
 
 The goal of `TriPlaner` is to create a platform to streamline the process of creating travel plans.
 ### CAUTION
-All HTML is hardcoded and does not have a dynamic backend. It´s just a __prototype__
+All HTML is hardcoded and does not have a dynamic backend. It's just a __prototype__
 ## Code Structure
 
 * __carousel-slider.html__  - Home screen for signed users.
