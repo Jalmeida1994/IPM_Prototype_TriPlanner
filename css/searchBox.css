@@ -15,7 +15,8 @@
 }
 
 .searchbox-wrapper{
-  margin: 16px;
+  margin: 64px;
+  padding: 16px;
 }
 
 .seachTitle{
@@ -24,6 +25,6 @@
 
 
 .seachTitle > p {
-    font-size: 25px;
+    font-size: 30px;
     font-family: roboto-ligh-italic;
 }

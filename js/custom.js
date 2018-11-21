@@ -133,6 +133,7 @@ $(document).ready(function () {
         ($(window).scrollTop() > topheight) ? $('.tv-sticky-header').addClass('tv-sticky-header-active') : $('.tv-sticky-header').removeClass('tv-sticky-header-active');
     });
 
+
     openNav();
     closeNav();
 });
