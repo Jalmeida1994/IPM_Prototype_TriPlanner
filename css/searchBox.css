@@ -1,0 +1,29 @@
+
+@font-face {
+   font-family: roboto-ligh-italic;
+   src: url("../fonts/Roboto/Roboto-LightItalic.ttf");
+}
+
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.searchbox-wrapper{
+  margin: 16px;
+}
+
+.seachTitle{
+  margin: 16px;
+}
+
+
+.seachTitle > p {
+    font-size: 25px;
+    font-family: roboto-ligh-italic;
+}
