@@ -3,9 +3,9 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-	
+
     <title>Draggable Directions</title>
-	
+
 	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -31,22 +31,22 @@
 		height:0;
 		width:0;
 	}
-	  
+
 	<!--.text {
 		background: #cedc98;
 		border: 1px solid #DDDDDD;
 		color: #333333;
 		text-align: justify;
 	 }-->
-	  
+
 	.close {
 		float:right;
 		display:inline-block;
 		padding: 1px 5px;
-		margin: 0px 3px 3px 3px; 
+		margin: 0px 3px 3px 3px;
 		<!--background:#ccc;-->
 		background-color: #777;
-		
+
 	}
 	.close:hover {
 		background-color: #555;
@@ -55,14 +55,14 @@
 		float:left;
 		display:inline-block;
 		padding:10px 12px ;
-		margin: 0px 0px 0px 7px; 
-		
+		margin: 0px 0px 0px 7px;
+
 		color: white;
 	    background-position: center;
 		background-repeat: no-repeat;
-		background-size: 30px 80%;	
+		background-size: 30px 80%;
 	}
-	
+
 	i {
 	  border: solid black;
 	  position: absolute;
@@ -89,26 +89,26 @@
 			-webkit-transform: rotate(45deg);
 			z-index: 9;
 		}
-		
-	#list { 
+
+	#list {
 		list-style-type: none;
-		margin: 0; 
-		padding: 0; 
-		<!--width: 380px;--> 
+		margin: 0;
+		padding: 0;
+		<!--width: 380px;-->
 		display: inline-block;
 		box-sizing: border-box;
-		overflow: visible;		
+		overflow: visible;
 	}
-	
+
 	#list li {
-		margin: 0 3px 3px 3px; 
-		padding: 0.4em; 
-		width: 380px; 
-		padding-left: 1.9em; 
-		font-size: 17px; 
+		margin: 0 3px 3px 3px;
+		padding: 0.4em;
+		width: 380px;
+		padding-left: 1.9em;
+		font-size: 17px;
 		height: 100%;
 	}
-	
+
 	.address {
 		background-color: #777;
 		color: white;
@@ -124,7 +124,7 @@
 	.active, .address:hover {
 		background-color: #555;
 	}
-	
+
 
 	.steps {
 		list-style-type: decimal;
@@ -134,7 +134,7 @@
 		background-color: #f1f1f1;
 	}
 
-	
+
 	#info_box {
 	  width: 380px;
 	  height: 20px;
@@ -145,9 +145,9 @@
 	  font-weight: bold;
 	  border-radius: 10px;
 	  background-color: #ddd;
-	  border-color: #aaa; 
+	  border-color: #aaa;
 	}
-	
+
 
 	<!-- #description {
         font-family: Roboto;
@@ -216,13 +216,13 @@
         font-weight: 500;
         padding: 6px 12px;
       }
-	  
+
       #target {
         width: 345px;
       }
     </style>
   </head>
-  
+
   <body>
 	<form>
 		<select id="cities" onchange="selectValue(this.form)" style="width:200px;" >
@@ -241,42 +241,42 @@
 			<option value="41.9, 12.5">Rome</option>
 			<option value="48.2, 16.366667">Vienna</option>
 		</select>
-	</form>	
-	
+	</form>
+
 	<form>
 		<input required type="text" id="titlePost" placeholder="Title..." style="width:196px;">
 		<input required disabled type="text" id="origin" placeholder="(1)Click on map to select origin..." value ="" style="width:270px;">
 		<input required disabled type="text" id="destination" placeholder="(2)Click on map to select destination..." style="width:270px;">
-	</form>	
-	
+	</form>
+
 	<input id="pac-input" class="controls" type="text" placeholder="Search...">
     <div id="map"></div>
 	<div id="right-panel">
 		<button type="reset" onclick="resetMap()">Reset Map</button>
-		<ul id="list"></ul>	
+		<ul id="list"></ul>
 		<div id="info_box"></div>
 	</div>
 	<ul id= "direction_details"></ul>
 	<!--<div id="directions_panel" style="float:right;width:30%;text-align:left;padding-top:20px"></div>-->
-	
-	
+
+
     <script>
-	
+
 	var map;
 	var directionsDisplay;
 	var directionsService;
 	var allAddress = [];
 	var aTextArea;
 	var bTextArea;
-	
+
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 5,
-		  gestureHandling: 'greedy',
+		      gestureHandling: 'greedy',
           center: {lat: 45.811961, lng: 7.363960} // center Europe
         });
-		
+
 		search();
         directionsService = new google.maps.DirectionsService;
         directionsDisplay = new google.maps.DirectionsRenderer({
@@ -284,27 +284,27 @@
           map: map,
           panel: null// document.getElementById('right-panel')
         });
-		
+
         displayRoute();
 
 		google.maps.event.addListener(directionsDisplay, "directions_changed", function(){
 			var res = directionsDisplay.getDirections();
 			setDiv(res);
 		});
-		
+
       }
-	  
+
 	function geoCode(geocoder,coord){
 		geocoder.geocode({'latLng': coord}, function(results, status) {
 		if (status === "OK") {
-		  if (results[0]) 
+		  if (results[0])
 			return results[0].formatted_address;
 		}
 		else
 			 return alert('Geocode was not successful for the following reason: ' + status);
 		});
 	  }
-	  
+
     function displayRoute() {
 		// add origin->destination->waypoints
 		//var waypoints    = [];
@@ -312,13 +312,13 @@
 		var  destination;
 		var geocoder = new google.maps.Geocoder();
 		map.addListener('click', function(event) {
-			
+
 			geocoder.geocode({'latLng': event.latLng}, function(results, status) {
 			if (status === "OK") {
 				if (results[0]) {
 					// has origin
 					eventAddress = results[0].formatted_address;
-					allAddress.push(eventAddress);	
+					allAddress.push(eventAddress);
 					origin = allAddress[0];
 					document.getElementById("origin").value = origin;
 					if(allAddress.length > 1){// has destination
@@ -326,7 +326,7 @@
 						document.getElementById("destination").value = destination;
 						var waypoints    = [];
 						if(allAddress.length > 2){// has waypoint
-							
+
 							for(var k=2; k<allAddress.length; k++){
 								waypoints.push({
 								  location: allAddress[k],
@@ -334,7 +334,7 @@
 								});
 							}
 						}
-						
+
 						console.log("displayRoute: "+origin);
 						console.log("displayRoute: "+destination);
 						console.log("displayRoute: "+waypoints);
@@ -348,7 +348,7 @@
 			});
 		});
 	}
-	
+
 	function doRequest(origin, destination, waypoints ){
 		// request
 		directionsService.route({
@@ -364,13 +364,13 @@
 			  } else {
 				alert('Could not display directions due to: ' + status);
 			  }
-		});	
+		});
 	}
-	
+
 	function setDiv(response){
 			console.log(response.routes[0]);
 
-		var address = []; 
+		var address = [];
 		var route = response.routes[0];
 		var legs = route.legs;
 		document.getElementById("list").innerHTML = "";
@@ -381,7 +381,7 @@
 		var labelIndex = 0;
 		var i ;
 		for (i = 0; i < legs.length; i++) {
-		
+
 		    totalDistance += legs[i].distance.value;
 			totalDuration += legs[i].duration.value;
 			var start      = legs[i].start_address;
@@ -419,16 +419,16 @@
 				for (j=0;j<stepsVar.length;j++) {
 					steps.innerHTML += "<li>"+stepsVar[j].instructions;
 					var dist_dur = "";
-					if (stepsVar[j].distance && stepsVar[j].distance.text) 
+					if (stepsVar[j].distance && stepsVar[j].distance.text)
 						dist_dur += "&nbsp;"+stepsVar[j].distance.text;
 					if (stepsVar[j].duration && stepsVar[j].duration.text)
 						dist_dur += "&nbsp;"+stepsVar[j].duration.text;
-					if (dist_dur != "") 
+					if (dist_dur != "")
 						steps.innerHTML += dist_dur+"<br /></li>";
-					else 
+					else
 						steps.innerHTML += "</li>";
 				}
-				
+
 				var comment = document.createElement('TEXTAREA');
 				comment.className= "comment";
 				comment.value= "";
@@ -444,9 +444,9 @@
 				div.appendChild(li);
 				div.appendChild(comment);
 				div.appendChild(steps);
-			
-				toAdd.appendChild(div);	
-			}	
+
+				toAdd.appendChild(div);
+			}
 			//if(!address.includes(end)){
 			if(i===legs.length-1){
 				address.push(end);
@@ -480,7 +480,7 @@
 				comment.type = "text";
 				comment.rows="1";
 				comment.cols="55";
-				
+
 				div.appendChild(span);
 				div.appendChild(image);
 				div.appendChild(arrowUp);
@@ -489,20 +489,20 @@
 				div.appendChild(comment);
 				//div.appendChild(steps);
 
-				toAdd.appendChild(div);	
+				toAdd.appendChild(div);
 			//}
 			}
-			
-			
-			
-				
-		
-			
-	
-			
+
+
+
+
+
+
+
+
 		}
 		secondsToHmsDistance(totalDuration, totalDistance);
-		
+
 		//update global var
 		allAddress=address;
 		//put end to 2nd pos
@@ -511,19 +511,19 @@
 		console.log("allAddress: "+allAddress);
 		console.log(":::::::::::::::::::::::::::::::::::::::::");
 
-		
+
 		//console.log(toAdd.children);
 		document.getElementById('list').appendChild(toAdd);
-				
+
 		handleCloseButton();
 		handleSwapButton();
 		handleCollapsible();
-		handleCommentArea();	
+		handleCommentArea();
 	}
-	
-	
+
+
 	function secondsToHmsDistance(sec, totalDistance) {
-		//compute total time 
+		//compute total time
 		sec = Number(sec);
 		var h = Math.floor(sec / 3600);
 		var m = Math.floor(sec % 3600 / 60);
@@ -532,15 +532,15 @@
 		var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
 		var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
 		var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
-		var totalDuration = hDisplay + mDisplay + sDisplay; 
-		
+		var totalDuration = hDisplay + mDisplay + sDisplay;
+
 		//compute total distance
 		totalDistance=totalDistance/1000
 		document.getElementById("info_box").innerHTML="Total distance: " +totalDistance +" km " +'<br />'+"Duration: "+totalDuration ;
-		
-		
+
+
 	}
-	
+
 	function handleCommentArea(){
 		var textarea = document.getElementsByClassName("comment");
 		for (var i = 0; i < textarea.length; i++) {
@@ -549,7 +549,7 @@
 			});
 		}
 	}
-	
+
 	function handleCollapsible(){
 		var coll = document.getElementsByClassName("address");
 		for (var i = 0; i < coll.length; i++) {
@@ -564,16 +564,16 @@
 			});
 		}
 	}
-	
+
 	function handleSwapButton(){
 		var arrowUp = document.getElementsByClassName('arrowUp');
-		for (var i=0; i < arrowUp.length; i++) 
+		for (var i=0; i < arrowUp.length; i++)
 			arrowUp[i].addEventListener("click", arrowU);
 		var arrowDown = document.getElementsByClassName('arrowDown');
-		for (var j=0; j < arrowDown.length; j++) 
-			arrowDown[j].addEventListener("click", arrowD);	
+		for (var j=0; j < arrowDown.length; j++)
+			arrowDown[j].addEventListener("click", arrowD);
 	}
-	
+
 	function arrowU(){
 		var waypoints = [];
 		var divA = this.parentNode;
@@ -607,9 +607,9 @@
 					waypoints=[];
 				}
 			}
-		}	
+		}
 	}
-	
+
 	function arrowD(){
 		var waypoints = [];
 		var divA = this.parentNode;
@@ -618,7 +618,7 @@
 		var b = divB.childNodes[4].getAttribute("address");
 		var list = document.getElementById("list").children;
 		if(divB !=null){
-			//swap address 
+			//swap address
 			divA.parentNode.insertBefore(divB, divA);
 			for (var i = 0; i < list.length; i++) {
 				if(list[i]===divA){
@@ -647,10 +647,10 @@
 
 	function handleCloseButton(){
 		var close = document.getElementsByClassName('close');
-		for (var i=0; i < close.length; i++) 
+		for (var i=0; i < close.length; i++)
 			close[i].addEventListener("click", removeDirection);
 	}
-	
+
 	function removeDirection(){
 		var waypoints = [];
 		var listold = document.getElementById("list").children;
@@ -677,13 +677,13 @@
 						index = 1;
 					//console.log("all address position deleted: "+index);
 					//update/remove from global var
-					if (index > -1) 
+					if (index > -1)
 						allAddress.splice(index, 1);
-					// if end removed, last pos is end in 2nd pos	
+					// if end removed, last pos is end in 2nd pos
 					if(index===1)
 						allAddress.splice(1, 0, allAddress.pop());
-					
-					
+
+
 					//console.log("new all address: "+ allAddress);
 				}
 			}
@@ -703,9 +703,9 @@
 			doRequest(allAddress[0],allAddress[1],waypoints);
 			waypoints=[];
 			//}
-		}		
+		}
 	}
-	
+
 	 function search(){
 		// Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
@@ -716,7 +716,7 @@
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
-		
+
 		 var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve more details for that place.
         searchBox.addListener('places_changed', function() {
@@ -725,15 +725,15 @@
           if (places.length == 0) {
             return;
           }
-		  
+
 		// Clear out the old markers.
 		window.setTimeout(function() {
 			markers.forEach(function(marker) {
 				marker.setMap(null);
-			});	  
+			});
 		}, 3000);
         markers = [];
-		  
+
           // For each place, get the icon, name and location.
           var bounds = new google.maps.LatLngBounds();
           places.forEach(function(place) {
@@ -750,16 +750,16 @@
             };
 
 			 // Create a marker for each place.
-			 
+
             markers.push(new google.maps.Marker({
               map: map,
               icon: icon,
               title: place.name,
               position: place.geometry.location
             }));
-			
-		
-			
+
+
+
             if (place.geometry.viewport) {
               // Only geocodes have viewport.
               bounds.union(place.geometry.viewport);
@@ -770,7 +770,7 @@
           map.fitBounds(bounds);
         });
 	}
-	   
+
 	function selectValue(form) {
 		var f = form.cities;
 		var coord = f.options[f.selectedIndex].value;
@@ -781,7 +781,7 @@
         map.panTo(latLng);
 		map.setZoom(10);
 	}
-	
+
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KKL15zpo8Gutp0_wz4sWPVCZYDateOg&libraries=places&callback=initMap"> </script>
   </body>

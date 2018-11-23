@@ -143,7 +143,7 @@ iframe {
 }
 .tv-middle-header {
     /*    border-bottom: 1px solid #ddd;*/
-  
+
     padding: 35px 0;
 }
 .tv-top-socials ul li, .tv-author-social ul li {
@@ -896,6 +896,11 @@ article.tv-post-item {
     padding-left: 100px;
     position: relative;
 }
+
+.text-review-text > p{
+  color: black;
+}
+
 .tv-review-thumb {
     border: 1px solid #e0e0e0;
     border-radius: 3px;
