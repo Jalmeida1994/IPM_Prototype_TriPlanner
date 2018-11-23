@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+	
+    <title>Draggable Directions</title>
+	
+	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+		margin-top: 10px;
+        float: left;
+        width: 63%;
+        height: 85%;
+      }
+      #right-panel {
+        float: right;
+        width: 35%;
+        height: 100%;
+      }
+	  .warnbox-content,.adp-warnbox{
+		visibility:hidden;
+		height:0;
+		width:0;
+	}
+	  
+	<!--.text {
+		background: #cedc98;
+		border: 1px solid #DDDDDD;
+		color: #333333;
+		text-align: justify;
+	 }-->
+	  
+	.close {
+		float:right;
+		display:inline-block;
+		padding: 1px 5px;
+		margin: 0px 3px 3px 3px; 
+		<!--background:#ccc;-->
+		background-color: #777;
+		
+	}
+	.close:hover {
+		background-color: #555;
+	}
+	.image{
+		float:left;
+		display:inline-block;
+		padding:10px 12px ;
+		margin: 0px 0px 0px 7px; 
+		
+		color: white;
+	    background-position: center;
+		background-repeat: no-repeat;
+		background-size: 30px 80%;	
+	}
+	
+	i {
+	  border: solid black;
+	  position: absolute;
+	  border-width: 0 3px 3px 0;
+	  display: inline-block;
+	  padding: 3px;
+	}
+		.arrowUp {
+			position: relative;
+			float: left;
+			left: -50px;
+			bottom: -10px;
+			transform: rotate(-135deg);
+			-webkit-transform: rotate(-135deg);
+			z-index: 9;
+		}
+
+		.arrowDown {
+			position: relative;
+			float: left;
+			left: -59px;
+			bottom: -30px;
+			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+			z-index: 9;
+		}
+		
+	#list { 
+		list-style-type: none;
+		margin: 0; 
+		padding: 0; 
+		<!--width: 380px;--> 
+		display: inline-block;
+		box-sizing: border-box;
+		overflow: visible;		
+	}
+	
+	#list li {
+		margin: 0 3px 3px 3px; 
+		padding: 0.4em; 
+		width: 380px; 
+		padding-left: 1.9em; 
+		font-size: 17px; 
+		height: 100%;
+	}
+	
+	.address {
+		background-color: #777;
+		color: white;
+		cursor: pointer;
+		padding: 18px;
+		width: 100%;
+		border: none;
+		text-align: left;
+		outline: none;
+		font-size: 15px;
+	}
+
+	.active, .address:hover {
+		background-color: #555;
+	}
+	
+
+	.steps {
+		list-style-type: decimal;
+		padding: 0px 18px;
+		display: none;
+		overflow: hidden;
+		background-color: #f1f1f1;
+	}
+
+	
+	#info_box {
+	  width: 380px;
+	  height: 20px;
+	  border: 2px solid #000;
+	  margin: 0 auto 15px;
+	  text-align: center;
+	  padding: 20px;
+	  font-weight: bold;
+	  border-radius: 10px;
+	  background-color: #ddd;
+	  border-color: #aaa; 
+	}
+	
+
+	<!-- #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }-->
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+	  
+      #target {
+        width: 345px;
+      }
+    </style>
+  </head>
+  
+  <body>
+	<form>
+		<select id="cities" onchange="selectValue(this.form)" style="width:200px;" >
+			<option value="javascript:void(0)" selected>Select a city...</option>
+			<option value="52.373056, 4.892222">Amsterdam</option>
+			<option value="52.516667, 13.394444">Berlin</option>
+			<option value="47.471944, 19.050278">Budapest</option>
+			<option value="50.833333, 4.366667">Brussels</option>
+			<option value="53.346944, -6.259167">Dublin</option>
+			<option value="55.716667, 12.566667">Copenhagen</option>
+			<option value="38.716667, -9.133333">Lisbon</option>
+			<option value="51.507778, -0.128056">London</option>
+			<option value="40.383333, -3.666667">Madrid</option>
+			<option value="48.866667, 2.332778">Paris</option>
+			<option value="50.083333, 14.416667">Prague</option>
+			<option value="41.9, 12.5">Rome</option>
+			<option value="48.2, 16.366667">Vienna</option>
+		</select>
+	</form>	
+	
+	<form>
+		<input required type="text" id="titlePost" placeholder="Title..." style="width:196px;">
+		<input required disabled type="text" id="origin" placeholder="(1)Click on map to select origin..." value ="" style="width:270px;">
+		<input required disabled type="text" id="destination" placeholder="(2)Click on map to select destination..." style="width:270px;">
+	</form>	
+	
+	<input id="pac-input" class="controls" type="text" placeholder="Search...">
+    <div id="map"></div>
+	<div id="right-panel">
+		<button type="reset" onclick="resetMap()">Reset Map</button>
+		<ul id="list"></ul>	
+		<div id="info_box"></div>
+	</div>
+	<ul id= "direction_details"></ul>
+	<!--<div id="directions_panel" style="float:right;width:30%;text-align:left;padding-top:20px"></div>-->
+	
+	
+    <script>
+	
+	var map;
+	var directionsDisplay;
+	var directionsService;
+	var allAddress = [];
+	var aTextArea;
+	var bTextArea;
+	
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+		  gestureHandling: 'greedy',
+          center: {lat: 45.811961, lng: 7.363960} // center Europe
+        });
+		
+		search();
+        directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer({
+          draggable: true,
+          map: map,
+          panel: null// document.getElementById('right-panel')
+        });
+		
+        displayRoute();
+
+		google.maps.event.addListener(directionsDisplay, "directions_changed", function(){
+			var res = directionsDisplay.getDirections();
+			setDiv(res);
+		});
+		
+      }
+	  
+	function geoCode(geocoder,coord){
+		geocoder.geocode({'latLng': coord}, function(results, status) {
+		if (status === "OK") {
+		  if (results[0]) 
+			return results[0].formatted_address;
+		}
+		else
+			 return alert('Geocode was not successful for the following reason: ' + status);
+		});
+	  }
+	  
+    function displayRoute() {
+		// add origin->destination->waypoints
+		//var waypoints    = [];
+		var       origin;
+		var  destination;
+		var geocoder = new google.maps.Geocoder();
+		map.addListener('click', function(event) {
+			
+			geocoder.geocode({'latLng': event.latLng}, function(results, status) {
+			if (status === "OK") {
+				if (results[0]) {
+					// has origin
+					eventAddress = results[0].formatted_address;
+					allAddress.push(eventAddress);	
+					origin = allAddress[0];
+					document.getElementById("origin").value = origin;
+					if(allAddress.length > 1){// has destination
+						destination = allAddress[1];
+						document.getElementById("destination").value = destination;
+						var waypoints    = [];
+						if(allAddress.length > 2){// has waypoint
+							
+							for(var k=2; k<allAddress.length; k++){
+								waypoints.push({
+								  location: allAddress[k],
+								  stopover: true
+								});
+							}
+						}
+						
+						console.log("displayRoute: "+origin);
+						console.log("displayRoute: "+destination);
+						console.log("displayRoute: "+waypoints);
+						console.log("======================================" );
+						doRequest(origin, destination, waypoints);
+					}
+				}
+			}
+			else
+				alert('Geocode was not successful for the following reason: ' + status);
+			});
+		});
+	}
+	
+	function doRequest(origin, destination, waypoints ){
+		// request
+		directionsService.route({
+			  origin: origin,
+			  destination: destination,
+			  waypoints: waypoints,
+			  travelMode: 'WALKING',
+			  avoidTolls: true
+			}, function(response, status) {
+			  if (status === 'OK') {
+				directionsDisplay.setDirections(response);
+				setDiv(response);
+			  } else {
+				alert('Could not display directions due to: ' + status);
+			  }
+		});	
+	}
+	
+	function setDiv(response){
+			console.log(response.routes[0]);
+
+		var address = []; 
+		var route = response.routes[0];
+		var legs = route.legs;
+		document.getElementById("list").innerHTML = "";
+		var totalDistance=0;
+		var totalDuration=0;
+		var toAdd = document.createDocumentFragment();
+		var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		var labelIndex = 0;
+		var i ;
+		for (i = 0; i < legs.length; i++) {
+		
+		    totalDistance += legs[i].distance.value;
+			totalDuration += legs[i].duration.value;
+			var start      = legs[i].start_address;
+			var end 	   = legs[i].end_address;
+			var startCoord = legs[i].start_location;
+			var endCoord   = legs[i].end_location;
+			if(!address.includes(start) ){
+				address.push(start);
+				//div : 1)span 2)image 3)li
+				var div = document.createElement('DIV');
+				var li = document.createElement('LI');
+				li.id = 'start'+i;
+				//li.id = labels[labelIndex++ % labels.length];
+				li.innerHTML = start;
+				li.setAttribute("address", start);
+				li.setAttribute("addressCoord", startCoord);
+				li.className = "address";
+				var span = document.createElement('SPAN');
+				span.className="close";
+				span.id="close";
+				span.textContent="x";
+				var image = document.createElement('DIV');
+				image.style.backgroundImage = "url('red.png')";
+				image.className="image";
+				image.textContent=labels[labelIndex++ % labels.length];
+				var arrowUp = document.createElement('I');
+				arrowUp.className="arrowUp";
+				var arrowDown = document.createElement('I');
+				arrowDown.className="arrowDown";
+				var steps = document.createElement('UL');
+				steps.className="steps";
+				//steps.textContent="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+				steps.innerHTML="";
+				var stepsVar = legs[i].steps
+				for (j=0;j<stepsVar.length;j++) {
+					steps.innerHTML += "<li>"+stepsVar[j].instructions;
+					var dist_dur = "";
+					if (stepsVar[j].distance && stepsVar[j].distance.text) 
+						dist_dur += "&nbsp;"+stepsVar[j].distance.text;
+					if (stepsVar[j].duration && stepsVar[j].duration.text)
+						dist_dur += "&nbsp;"+stepsVar[j].duration.text;
+					if (dist_dur != "") 
+						steps.innerHTML += dist_dur+"<br /></li>";
+					else 
+						steps.innerHTML += "</li>";
+				}
+				
+				var comment = document.createElement('TEXTAREA');
+				comment.className= "comment";
+				comment.value= "";
+				comment.placeholder= "Add recommendation...";
+				comment.type = "text";
+				comment.rows="1";
+				comment.cols="55";
+
+				div.appendChild(span);
+				div.appendChild(image);
+				div.appendChild(arrowUp);
+				div.appendChild(arrowDown);
+				div.appendChild(li);
+				div.appendChild(comment);
+				div.appendChild(steps);
+			
+				toAdd.appendChild(div);	
+			}	
+			//if(!address.includes(end)){
+			if(i===legs.length-1){
+				address.push(end);
+				var div = document.createElement('DIV');
+				var li = document.createElement('LI');
+				//li.id = labels[labelIndex++ % labels.length];
+				li.id = 'end'+i;
+				li.innerHTML = end;
+				li.setAttribute("address", end);
+				li.setAttribute("addressCoord", endCoord);
+				li.className = "address";
+				var span = document.createElement('SPAN');
+				span.id="close";
+				span.className="close";
+				span.textContent="x";
+				var image = document.createElement('DIV');
+				image.style.backgroundImage = "url('red.png')";
+				image.className="image";
+				image.textContent=labels[labelIndex++ % labels.length];
+				var arrowUp = document.createElement('I');
+				arrowUp.className="arrowUp";
+				var arrowDown = document.createElement('I');
+				arrowDown.className="arrowDown";
+				//var steps = document.createElement('LI');
+				//steps.textContent="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+				//steps.className="steps";
+				var comment = document.createElement('TEXTAREA');
+				comment.className= "comment";
+				comment.value= "";
+				comment.placeholder= "Add recommendation...";
+				comment.type = "text";
+				comment.rows="1";
+				comment.cols="55";
+				
+				div.appendChild(span);
+				div.appendChild(image);
+				div.appendChild(arrowUp);
+				div.appendChild(arrowDown);
+				div.appendChild(li);
+				div.appendChild(comment);
+				//div.appendChild(steps);
+
+				toAdd.appendChild(div);	
+			//}
+			}
+			
+			
+			
+				
+		
+			
+	
+			
+		}
+		secondsToHmsDistance(totalDuration, totalDistance);
+		
+		//update global var
+		allAddress=address;
+		//put end to 2nd pos
+		allAddress.splice(1, 0, allAddress.pop());
+		console.log( "address: "+ address);
+		console.log("allAddress: "+allAddress);
+		console.log(":::::::::::::::::::::::::::::::::::::::::");
+
+		
+		//console.log(toAdd.children);
+		document.getElementById('list').appendChild(toAdd);
+				
+		handleCloseButton();
+		handleSwapButton();
+		handleCollapsible();
+		handleCommentArea();	
+	}
+	
+	
+	function secondsToHmsDistance(sec, totalDistance) {
+		//compute total time 
+		sec = Number(sec);
+		var h = Math.floor(sec / 3600);
+		var m = Math.floor(sec % 3600 / 60);
+		var s = Math.floor(sec % 3600 % 60);
+
+		var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+		var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+		var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+		var totalDuration = hDisplay + mDisplay + sDisplay; 
+		
+		//compute total distance
+		totalDistance=totalDistance/1000
+		document.getElementById("info_box").innerHTML="Total distance: " +totalDistance +" km " +'<br />'+"Duration: "+totalDuration ;
+		
+		
+	}
+	
+	function handleCommentArea(){
+		var textarea = document.getElementsByClassName("comment");
+		for (var i = 0; i < textarea.length; i++) {
+			textarea[i].addEventListener("click", function() {
+				this.rows="5";
+			});
+		}
+	}
+	
+	function handleCollapsible(){
+		var coll = document.getElementsByClassName("address");
+		for (var i = 0; i < coll.length; i++) {
+			coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var content = this.nextElementSibling.nextElementSibling;
+				if (content.style.display === "block") {
+				  content.style.display = "none";
+				} else {
+				  content.style.display = "block";
+				}
+			});
+		}
+	}
+	
+	function handleSwapButton(){
+		var arrowUp = document.getElementsByClassName('arrowUp');
+		for (var i=0; i < arrowUp.length; i++) 
+			arrowUp[i].addEventListener("click", arrowU);
+		var arrowDown = document.getElementsByClassName('arrowDown');
+		for (var j=0; j < arrowDown.length; j++) 
+			arrowDown[j].addEventListener("click", arrowD);	
+	}
+	
+	function arrowU(){
+		var waypoints = [];
+		var divA = this.parentNode;
+		var a = divA.childNodes[4].getAttribute("address");// 4=li(address)
+		var divB = this.parentNode.previousSibling;
+		var b = divB.childNodes[4].getAttribute("address");
+		var list = document.getElementById("list").children;
+		if(divB !=null){
+			//swap address
+			divA.parentNode.insertBefore(divA,divB);
+			for (var i = 0; i < list.length; i++) {
+				if(list[i]===divA){
+					//put end in last position
+					allAddress.push(allAddress.splice(1, 1)[0]);
+					var indexA = allAddress.indexOf(a);
+					var indexB = allAddress.indexOf(b);
+					//swap positions
+					var temp = allAddress[indexA];
+					allAddress[indexA] = allAddress[indexB];
+					allAddress[indexB] = temp;
+					//put end in 2nd position
+					allAddress.splice(1, 0, allAddress.pop());
+					//fill waypoints
+					for (var j = 2; j < allAddress.length ; j++) {
+						waypoints.push({
+						  location: allAddress[j],
+						  stopover: true
+						});
+					}
+					doRequest(allAddress[0],allAddress[1],waypoints);
+					waypoints=[];
+				}
+			}
+		}	
+	}
+	
+	function arrowD(){
+		var waypoints = [];
+		var divA = this.parentNode;
+		var a = divA.childNodes[4].getAttribute("address");
+		var divB = this.parentNode.nextSibling;
+		var b = divB.childNodes[4].getAttribute("address");
+		var list = document.getElementById("list").children;
+		if(divB !=null){
+			//swap address 
+			divA.parentNode.insertBefore(divB, divA);
+			for (var i = 0; i < list.length; i++) {
+				if(list[i]===divA){
+					//put end in last position
+					allAddress.push(allAddress.splice(1, 1)[0]);
+					var indexA = allAddress.indexOf(a);
+					var indexB = allAddress.indexOf(b);
+					//swap positions
+					var temp = allAddress[indexA];
+					allAddress[indexA] = allAddress[indexB];
+					allAddress[indexB] = temp;
+					//put end in 2nd position
+					allAddress.splice(1, 0, allAddress.pop());
+					//fill waypoints
+					for (var j = 2; j < allAddress.length ; j++) {
+						waypoints.push({
+						  location: allAddress[j],
+						  stopover: true
+						});
+					}
+					doRequest(allAddress[0],allAddress[1],waypoints);
+				}
+			}
+		}
+	}
+
+	function handleCloseButton(){
+		var close = document.getElementsByClassName('close');
+		for (var i=0; i < close.length; i++) 
+			close[i].addEventListener("click", removeDirection);
+	}
+	
+	function removeDirection(){
+		var waypoints = [];
+		var listold = document.getElementById("list").children;
+		if(listold.length > 2){
+			//remover do global
+			for (var i = 0; i < listold.length; i++) {
+				//o a remover é igual uma pos da lista de divs
+				if(listold[i]===this.parentNode){
+					//console.log("o a remover: "+listold[i].innerHTML);
+					//var counter=i;
+					var index = i+1;
+					//console.log("pos i: "+i +"--<> value in pos i: "+ allAddress[i]+"--<> in array: "+ allAddress);
+					//console.log("allAddress[1]: "+ allAddress[1]);
+					//console.log("listold[i].childNodes[2].getAttribute(address): "+listold[i].childNodes[2].getAttribute("address"));
+					//if remove origin swap with 3rd
+					if(allAddress[0] === listold[i].childNodes[4].getAttribute("address")){
+						index = 2;
+						var temp = allAddress[0];
+						allAddress[0] = allAddress[2];
+						allAddress[2] = temp;
+					}
+					//if remove end
+					if(allAddress[1] === listold[i].childNodes[4].getAttribute("address"))
+						index = 1;
+					//console.log("all address position deleted: "+index);
+					//update/remove from global var
+					if (index > -1) 
+						allAddress.splice(index, 1);
+					// if end removed, last pos is end in 2nd pos	
+					if(index===1)
+						allAddress.splice(1, 0, allAddress.pop());
+					
+					
+					//console.log("new all address: "+ allAddress);
+				}
+			}
+			this.parentNode.parentNode.removeChild(this.parentNode);
+			var list = document.getElementById("list").children;
+		    //for (var i = 0; i < list.length; i++) {
+			for (var j = 2; j < allAddress.length ; j++) {
+				//console.log("Remove waypoints: "+allAddress[j]);
+				waypoints.push({
+				  location: allAddress[j],
+				  stopover: true
+				});
+			}
+			//console.log("Remove start: "+allAddress[0]);
+			//console.log("Remove end: "+allAddress[1]);
+			//console.log("------------------------------------------------");
+			doRequest(allAddress[0],allAddress[1],waypoints);
+			waypoints=[];
+			//}
+		}		
+	}
+	
+	 function search(){
+		// Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+		
+		 var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+		  
+		// Clear out the old markers.
+		window.setTimeout(function() {
+			markers.forEach(function(marker) {
+				marker.setMap(null);
+			});	  
+		}, 3000);
+        markers = [];
+		  
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+			 // Create a marker for each place.
+			 
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+			
+		
+			
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+	}
+	   
+	function selectValue(form) {
+		var f = form.cities;
+		var coord = f.options[f.selectedIndex].value;
+		var partsOfStr = coord.split(', ');
+		var lat = partsOfStr[0];
+		var lng = partsOfStr[1];
+		var latLng = new google.maps.LatLng(lat, lng); //Makes a latlng
+        map.panTo(latLng);
+		map.setZoom(10);
+	}
+	
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KKL15zpo8Gutp0_wz4sWPVCZYDateOg&libraries=places&callback=initMap"> </script>
+  </body>
+</html>
