@@ -38,6 +38,10 @@ body {
     overflow-x: hidden;
 }
 
+a > h1, p{
+  color: white
+}
+
 a, button {
     text-decoration: none;
     cursor: pointer;
@@ -49,9 +53,18 @@ a {
     color: inherit;
 }
 a:hover {
-    color: #d4c83a;
+    color: white;
     outline: none !important;
-    text-decoration: none;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a:hover > h1{
+  font-size: 40px;
+}
+
+a:hover > p {
+  font-size: 15px;
 }
 
 ul{
@@ -130,6 +143,7 @@ iframe {
 }
 .tv-middle-header {
     /*    border-bottom: 1px solid #ddd;*/
+  
     padding: 35px 0;
 }
 .tv-top-socials ul li, .tv-author-social ul li {

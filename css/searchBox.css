@@ -15,7 +15,9 @@
 }
 
 .searchbox-wrapper{
-  margin: 64px;
+  margin-left: 64px;
+  margin-right: 64px;
+  margin-bottom: 64px;
   padding: 16px;
 }
 
