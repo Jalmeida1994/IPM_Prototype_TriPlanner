@@ -56,7 +56,7 @@ input {
   color: black;
 }
 
-#form1{
+.forms{
   display: inline-block;
   margin-left: 32px;
 }

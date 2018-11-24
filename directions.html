@@ -38,7 +38,7 @@
 			  src="https://code.jquery.com/jquery-3.3.1.js"
 			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 			  crossorigin="anonymous"></script>
-		
+
   <script src="./js/bootstrap.min.js" type="text/javascript"></script>
   <script src="./js/swiper.min.js" type="text/javascript"></script>
   <script src="./js/slick.min.js" type="text/javascript"></script>
@@ -62,7 +62,7 @@
   <div class="body-wrapper">
       <div class="tile-wrapper">
         <div class="title-text-wrapper">
-          <p>Título:</p>
+          <p>Title:</p>
         </div>
         <div class="input-title-wrapper">
           <input required type="text" id="titlePost" placeholder="Title...">
@@ -70,24 +70,17 @@
       </div>
       <div class="dropdown-menu-wrapper">
         <div class="dropdown-menu-text-wapper">
-          <p>Escolha a categoria: </p>
+          <p>Choose the category: </p>
         </div>
-        <form id="form1">
-          <select id="cities" onchange="selectValue(this.form)">
+        <form class="forms" id="catform">
+          <select id="cities">
             <option value="javascript:void(0)" selected>Select a category...</option>
-            <option value="52.373056, 4.892222">Amsterdam</option>
-            <option value="52.516667, 13.394444">Berlin</option>
-            <option value="47.471944, 19.050278">Budapest</option>
-            <option value="50.833333, 4.366667">Brussels</option>
-            <option value="53.346944, -6.259167">Dublin</option>
-            <option value="55.716667, 12.566667">Copenhagen</option>
-            <option value="38.716667, -9.133333">Lisbon</option>
-            <option value="51.507778, -0.128056">London</option>
-            <option value="40.383333, -3.666667">Madrid</option>
-            <option value="48.866667, 2.332778">Paris</option>
-            <option value="50.083333, 14.416667">Prague</option>
-            <option value="41.9, 12.5">Rome</option>
-            <option value="48.2, 16.366667">Vienna</option>
+            <option>Culture</option>
+            <option>Party</option>
+            <option>Sports</option>
+            <option>Nature</option>
+            <option>History</option>
+            <option>Tech</option>
           </select>
         </form>
       </div>
@@ -96,7 +89,7 @@
         <div class="dropdown-menu-text-wapper">
           <p>Escolha a cidade: </p>
         </div>
-        <form id="form1">
+        <form class="forms" id="form1">
           <select id="cities" onchange="selectValue(this.form)">
             <option value="javascript:void(0)" selected>Select a city...</option>
             <option value="52.373056, 4.892222">Amsterdam</option>
