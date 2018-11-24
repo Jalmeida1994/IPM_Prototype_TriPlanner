@@ -9,7 +9,7 @@ var bTextArea;
   function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 5,
-    gestureHandling: 'greedy',
+		gestureHandling: 'greedy',
         center: {lat: 45.811961, lng: 7.363960} // center Europe
       });
 
@@ -23,10 +23,10 @@ var bTextArea;
 
       displayRoute();
 
-  google.maps.event.addListener(directionsDisplay, "directions_changed", function(){
-    var res = directionsDisplay.getDirections();
-    setDiv(res);
-  });
+	  google.maps.event.addListener(directionsDisplay, "directions_changed", function(){
+		var res = directionsDisplay.getDirections();
+		setDiv(res);
+	  });
 
   }
 
@@ -529,5 +529,5 @@ function selectValue(form) {
     var lng = partsOfStr[1];
     var latLng = new google.maps.LatLng(lat, lng); //Makes a latlng
     map.panTo(latLng);
-    map.setZoom(10);
+    map.setZoom(12);
 }
