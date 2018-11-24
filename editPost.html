@@ -319,13 +319,13 @@ border-color: green; text-align: center;">
 	  
 	  
 	function resetMap(){
+	directionsDisplay.setMap(null);
+	//	initMap();
 		allAddress = [];
 		document.getElementById("list").innerHTML = '';
 		document.getElementById("info_box").innerHTML = '';
 		document.getElementById("origin").value = '';
-		document.getElementById("destination").value = '';
-		
-		initMap();
+		document.getElementById("destination").value = '';	
 		
 	}
 	
