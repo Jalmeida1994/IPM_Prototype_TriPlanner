@@ -151,6 +151,9 @@
 	#saveMap {
 		float: right;
 	}
+	#private {
+		float: right;
+	}
 	
 
 	<!-- #description {
@@ -263,8 +266,11 @@
 		<ul id="list"></ul>	
 		<div id="info_box"></div>
 	</div>
-	<button id="saveMap" type="submit" onclick="saveMap()">Save Post</button>
-
+	
+	<form>
+		<button id="saveMap" type="submit" onclick="saveMap()">Save Post</button>
+		<input id = "private" type="checkbox"  value="private">Make it private<br>
+	</form>
 	<ul id= "direction_details"></ul>
 	<!--<div id="directions_panel" style="float:right;width:30%;text-align:left;padding-top:20px"></div>-->
 	
