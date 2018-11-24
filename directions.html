@@ -14,7 +14,6 @@
         height: 100%;
         margin: 0;
         padding: 0;
-	  background-color:rgb(143,188,143);
       }
       #map {
 		margin-top: 10px;
@@ -68,7 +67,7 @@
 	}
 	
 	i {
-	  border: solid black;
+	  border: solid grey;
 	  position: absolute;
 	  border-width: 0 3px 3px 0;
 	  display: inline-block;
@@ -78,7 +77,7 @@
 			position: relative;
 			float: left;
 			left: -50px;
-			bottom: -10px;
+			bottom: -8px;
 			transform: rotate(-135deg);
 			-webkit-transform: rotate(-135deg);
 			z-index: 9;
@@ -88,7 +87,7 @@
 			position: relative;
 			float: left;
 			left: -59px;
-			bottom: -30px;
+			bottom: -20px;
 			transform: rotate(45deg);
 			-webkit-transform: rotate(45deg);
 			z-index: 9;
@@ -146,12 +145,12 @@
 	  width: 380px;
 	  height: 20px;
 	  border: 2px solid #000;
-	  margin: 0 auto 15px;
-	  text-align: center;
+	  text-align: left;
+	  margin_right: 100px;
 	  padding: 20px;
 	  font-weight: bold;
 	  border-radius: 10px;
-	  background-color: #ddd;
+	  background-color: rgb(152,251,152);
 	  border-color: #aaa; 
 	}
 	
@@ -239,7 +238,7 @@
   
   <body>
 	<form id="form1">
-		<select id="cities" onchange="selectValue(this.form)" style="width:200px; margin-left: 830px" >
+		<select id="cities" onchange="selectValue(this.form)" style="width:200px; margin-left: 318px" >
 			<option value="javascript:void(0)" selected>Select a city...</option>
 			<option value="52.373056, 4.892222">Amsterdam</option>
 			<option value="52.516667, 13.394444">Berlin</option>
@@ -259,19 +258,26 @@
 	
 	<form>
 		<input required disabled type="text" id="origin" placeholder="(1)Click on map to select origin..." value ="" style="width:270px; margin-left: 20px; border-style: solid;
-border-color: green;">
-		<input required type="text" id="titlePost" placeholder="Title..." style="width:196px; margin-left: 20px; border-style: solid; border-color: black;">
-		<input required disabled type="text" id="destination" placeholder="(2)Click on map to select destination..." value ="" style="width:270px; margin-left: 20px; border-style: solid; border-color: green;">
+border-color: green; text-align: center;">
+		<input required type="text" id="titlePost" placeholder="Title..." style="width:196px; margin-left: 20px; border-style: solid; border-color: black; text-align: center;">
+		<input required disabled type="text" id="destination" placeholder="(2)Click on map to select destination..." value ="" style="width:270px; margin-left: 20px; border-style: solid; border-color: green; text-align: center;">
 	</form>	
 	
 	<input id="pac-input" class="controls" type="text" placeholder="Search..." style="border-style: dashed; border-color: grey">
     <div id="map"></div>
 	<div id="right-panel">
-		<button type="reset" onclick="resetMap()">Reset Map</button>
+		<button type="reset" onclick="resetMap()" >
+Reset Map</button>
 		<ul id="list"></ul>	
 		<div id="info_box"></div>
 	</div>
-	<button id="saveMap" type="submit" onclick="saveMap()">Save Post</button>
+	<form>
+
+	<button id="saveMap" type="submit" onclick="saveMap()" style= "margin-right: 50px; background-color: white;border-style: double; border: 2px solid grey; margin-top: 15px">Save Post</button>
+	<input id = "private" type="checkbox"  value="private" style=" margin-left: 730px; margin-top: 18px;">Make it private<br>
+
+	</form>
+	
 
 	<ul id= "direction_details"></ul>
 	<!--<div id="directions_panel" style="float:right;width:30%;text-align:left;padding-top:20px"></div>-->
