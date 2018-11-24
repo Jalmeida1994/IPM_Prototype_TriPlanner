@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 	
-    <title>Create Post</title>
+    <title>Edit Post</title>
 	
 	<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -308,6 +308,7 @@ border-color: green; text-align: center;">
         });
 		
         displayRoute();
+		loadValues();
 
 		google.maps.event.addListener(directionsDisplay, "directions_changed", function(){
 			var res = directionsDisplay.getDirections();
@@ -326,6 +327,30 @@ border-color: green; text-align: center;">
 		
 		initMap();
 		
+	}
+	
+	function loadValues(){
+		allAddress=[];
+		allAddress.push("Heinrichstraße 5, 01097 Dresden, Alemanha"); //start;
+		allAddress.push("Terrassenufer 4, 01067 Dresden, Alemanha"); //end
+		allAddress.push("Palaispl. 11, 01097 Dresden, Alemanha");
+		allAddress.push("Augustusbrücke, 01097 Dresden, Alemanha");
+		allAddress.push("Theaterplatz 2, 01067 Dresden, Alemanha");	
+		allAddress.push("Postpl. 1, 01067 Dresden, Alemanha");	
+		allAddress.push("Taschenberg 2, 01067 Dresden,Alemanha");	
+		allAddress.push("Alemanha,Rampische Str. 6, 01067 Dresden, Alemanha");
+		document.getElementById("destination").value = allAddress[1];
+		document.getElementById("origin").value = allAddress[0];
+		var waypoints    = [];	
+		for(var k=2; k<allAddress.length; k++){
+			waypoints.push({
+			  location: allAddress[k],
+			  stopover: true
+			});
+		}
+		
+		doRequest(allAddress[0], allAddress[1], waypoints);
+	
 	}
 	  
 	  
