@@ -118,8 +118,7 @@ function setDiv(response){
   var labelIndex = 0;
   var i ;
   for (i = 0; i < legs.length; i++) {
-
-      totalDistance += legs[i].distance.value;
+    totalDistance += legs[i].distance.value;
     totalDuration += legs[i].duration.value;
     var start      = legs[i].start_address;
     var end 	   = legs[i].end_address;
