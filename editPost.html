@@ -244,8 +244,9 @@
 			<option value="52.516667, 13.394444">Berlin</option>
 			<option value="47.471944, 19.050278">Budapest</option>
 			<option value="50.833333, 4.366667">Brussels</option>
-			<option value="53.346944, -6.259167">Dublin</option>
 			<option value="55.716667, 12.566667">Copenhagen</option>
+			<option value="51.050407, 13.737262">Dresden</option>
+			<option value="53.346944, -6.259167">Dublin</option>
 			<option value="38.716667, -9.133333">Lisbon</option>
 			<option value="51.507778, -0.128056">London</option>
 			<option value="40.383333, -3.666667">Madrid</option>
@@ -271,11 +272,49 @@ border-color: green; text-align: center;">
 		<div id="info_box"></div>
 	</div>
 	<form>
-
-	<button id="saveMap" type="submit" onclick="saveMap()" style= "margin-right: 50px; background-color: white;border-style: double; border: 2px solid grey; margin-top: 15px">Save Post</button>
-	<input id = "private" type="checkbox"  value="private" style=" margin-left: 730px; margin-top: 18px;">Make it private<br>
-
+		<button id="saveMap" type="submit" onclick="saveMap()" style= "margin-right: 50px; background-color: white;border-style: double; border: 2px solid grey; margin-top: 15px">Save Post</button>
+		<input id = "private" type="checkbox"  value="private" style=" margin-left: 730px; margin-top: 18px;">Make it private<br>
 	</form>
+	
+	<table>
+		<caption>People often look for:</caption>
+	  <tr>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Price</th>
+	  </tr>
+	  <tr class='clickable-row'>
+		<td>1 Dresden Frauenkirche</td>
+		<td>Georg-Treu-Platz 3, 01067 Dresden</td>
+		<td>12.00 €</td>
+	  </tr >
+		<tr class='clickable-row'>
+		<td>2 Dresden Royal Palace and Museums</td>
+		<td>Taschenberg 2, 01067 Dresden</td>
+		<td>14.00 €</td>
+	  </tr>
+	  <tr class='clickable-row'> 
+		<td>3 Zwinger</td>
+		<td>Sophienstraße, 01067 Dresden</td>
+		<td>10.00 €</td>
+	  </tr >
+	  <tr class='clickable-row'>
+		<td>4 The Georgentor and the Procession of Princes</td>
+		<td>Schloßstraße 1, 01067 Dresden</td>
+		<td></td>
+	  </tr>
+	   <tr class='clickable-row'>
+		<td>5 Theaterplatz and the Semper Opera</td>
+		<td>Theaterplatz 2, 01067 Dresden</td>
+		<td>10.00 €</td>
+	  </tr>
+	   <tr class='clickable-row'>
+		<td>6 Brühl's Terrace</td>
+		<td>Georg-Treu-Platz 1, 01067 Dresden</td>
+		<td></td>
+	  </tr>
+	</table>
+		
 	
 
 	<ul id= "direction_details"></ul>
@@ -393,7 +432,7 @@ border-color: green; text-align: center;">
 				}
 			}
 			else
-				alert('Geocode was not successful for the following reason: ' + status);
+				console.log('Geocode was not successful for the following reason: ' + status);
 			});
 		});
 	}
@@ -411,7 +450,7 @@ border-color: green; text-align: center;">
 				directionsDisplay.setDirections(response);
 				setDiv(response);
 			  } else {
-				alert('Could not display directions due to: ' + status);
+				console.log('Could not display directions due to: ' + status);
 			  }
 		});	
 	}
@@ -555,7 +594,28 @@ border-color: green; text-align: center;">
 		handleCloseButton();
 		handleSwapButton();
 		handleCollapsible();
-		handleCommentArea();	
+		handleCommentArea();
+		handleSugestionTable();		
+	}
+	
+	function handleSugestionTable(){
+		var row = document.getElementsByClassName("clickable-row");
+		for (var i = 0; i < row.length; i++) {
+			row[i].addEventListener("click", function() {
+				//console.log("this:   "+ this.cells[1].innerHTML);
+				allAddress.push(this.cells[1].innerHTML);
+				if(allAddress.length>1){
+					var waypoints=[];
+					for (var j = 2; j < allAddress.length ; j++) {
+							waypoints.push({
+							  location: allAddress[j],
+							  stopover: true
+							});
+					}
+					doRequest(allAddress[0],allAddress[1],waypoints);
+				}
+			});
+		}
 	}
 	
 	
