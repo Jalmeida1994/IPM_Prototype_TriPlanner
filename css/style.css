@@ -38,6 +38,59 @@ body {
     overflow-x: hidden;
 }
 
+.table-wrapper{
+  margin: 16px;
+}
+
+.table-content-wrapper{
+
+  margin-top: 16px;
+
+}
+
+.table-content-wrapper > table{
+  border-radius: 8px;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.table-content-wrapper > table > tr{
+  padding: 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+table{
+
+  margin: 16px;
+}
+
+th{
+  height: 60px;
+  background: grey;
+  padding: 2px;
+  border-width: 2px;
+  border-color: black;
+  text-align: center;
+}
+
+td{
+
+  padding: 2px;
+  border-bottom: 2px solid black;
+  text-align: justify;
+  margin: 8px;
+}
+
+tr:hover{
+  background-color: #F7FF72;
+  
+}
+
+
+
 a > h1, p{
   color: white
 }
