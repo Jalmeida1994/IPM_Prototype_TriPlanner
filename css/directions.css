@@ -1,0 +1,277 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+.body-wrapper{
+  height:inherit;
+  margin: 64px;
+  padding: 16px;
+}
+
+.directions-title{
+  padding-left: 32px;
+
+}
+
+.tile-wrapper{
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+}
+
+.title-text-wrapper{
+  float: left;
+}
+
+.input-title-wrapper{
+  display: inline-block;
+  margin-left: 16px;
+
+}
+
+input {
+
+  width: 650px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid black;
+}
+
+
+.dropdown-menu-wrapper{
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  height: auto;
+
+}
+
+.dropdown-menu-text-wapper{
+  float: left;
+}
+
+.dropdown-menu-text-wapper > p {
+  color: black;
+}
+
+#form1{
+  display: inline-block;
+  margin-left: 32px;
+}
+
+#origin{
+  width:270px;
+  margin-left: 20px;
+  border-style: solid;
+  border-color: green;
+}
+
+
+
+#destination{
+  width:270px;
+  margin-left: 20px;
+  border-style: solid;
+
+}
+
+#map {
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  margin-top: 10px;
+  float: left;
+  width: 63%;
+  height: 85%;
+}
+#right-panel {
+  float: right;
+  width: 35%;
+  height: 100%;
+}
+.warnbox-content,.adp-warnbox{
+visibility:hidden;
+height:0;
+width:0;
+}
+
+
+.close {
+float:right;
+display:inline-block;
+padding: 1px 5px;
+margin: 0px 3px 3px 3px;
+background-color: #777;
+border-style: dashed;
+border-color: black;
+background-color:hsl(100%, 100%, 100%)
+
+}
+.close:hover {
+background-color:hsl(0, 100%, 70%);
+}
+.image{
+float:left;
+display:inline-block;
+padding:10px 12px ;
+margin: 0px 0px 0px 7px;
+
+color: white;
+background-position: center;
+background-repeat: no-repeat;
+background-size: 30px 80%;
+}
+
+i {
+border: solid black;
+position: absolute;
+border-width: 0 3px 3px 0;
+display: inline-block;
+padding: 3px;
+}
+.arrowUp {
+
+position: relative;
+float: left;
+left: -50px;
+bottom: -10px;
+transform: rotate(-135deg);
+-webkit-transform: rotate(-135deg);
+z-index: 9;
+}
+
+.arrowDown {
+position: relative;
+float: left;
+left: -59px;
+bottom: -30px;
+transform: rotate(45deg);
+-webkit-transform: rotate(45deg);
+z-index: 9;
+}
+
+.pointList {
+list-style-type: none;
+display: inline-block;
+box-sizing: border-box;
+overflow: visible;
+}
+
+.pointList li {
+font-size: 17px;
+border-style: solid;
+border-color: black;
+border-radius: 5px;
+}
+
+.address {
+background-color: #777;
+color: white;
+cursor: pointer;
+padding: 18px;
+width: 100%;
+border: none;
+text-align: left;
+outline: none;
+font-size: 15px;
+}
+
+.active, .address:hover {
+background-color: #555;
+}
+
+
+.steps {
+list-style-type: decimal;
+padding: 0px 18px;
+display: none;
+overflow: hidden;
+background-color: #f1f1f1;
+}
+
+
+#info_box {
+width: 380px;
+border: 2px solid #000;
+margin: 0 auto 15px;
+text-align: center;
+padding: 20px;
+font-weight: bold;
+border-radius: 10px;
+background-color: #ddd;
+border-color: #aaa;
+}
+
+#saveMap {
+float: right;
+}
+
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+#target {
+  width: 345px;
+}

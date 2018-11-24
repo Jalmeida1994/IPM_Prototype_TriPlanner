@@ -30,3 +30,14 @@
     font-size: 30px;
     font-family: roboto-ligh-italic;
 }
+
+.dropdown-menu-text-wapper > p{
+  font-size: 25px;
+  font-family: roboto-ligh-italic;
+}
+
+.title-text-wrapper > p{
+  color: black;
+  font-size: 25px;
+  font-family: roboto-ligh-italic;
+}
